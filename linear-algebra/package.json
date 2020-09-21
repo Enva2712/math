@@ -1,0 +1,21 @@
+{
+  "private": true,
+  "name": "linear-algebra",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Evan Rusmisel <evanrusmisel@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "fraction.js": "^4.0.12"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.1.1",
+    "@typescript-eslint/parser": "^4.1.1",
+    "eslint": "^7.9.0"
+  }
+}
