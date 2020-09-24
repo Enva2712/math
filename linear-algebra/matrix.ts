@@ -2,6 +2,7 @@ import Fraction from 'fraction.js';
 
 export type Row = Fraction[];
 export type Dimentions = [number, number];
+export type Cell = [number, number];
 export type HistoryItem = {
 	memo: string,
 	matrixData: Row[],
@@ -11,10 +12,10 @@ export default class Matrix {
 	readonly history: HistoryItem[]
 	readonly dimentions: Dimentions
 
-	static fromArray(numbers: number[][]) {
+	static fromArray(numbers: number[][]): Matrix {
 		const height = numbers.length
 		const width = numbers[0].length
-		if('undefined' !== typeof numbers.find(row => row.length !== width)) throw new Error('Matrix rows have different lengths')
+		if(!!numbers.find(row => row.length !== width)) throw new Error('Matrix rows have different lengths')
 
 		return new Matrix([{
 			memo: 'Initialization',
@@ -33,12 +34,26 @@ export default class Matrix {
 		return historyItemToString(this.history[0])
 	}
 
-	toArray() {
+	toArray(): number[][] {
 		return this.history[0].matrixData.slice()
+			.map(row =>
+				row.map(f => f.valueOf())
+			)
 	}
 
-	// TODO
-	valueAt() {}
+	definedAt([row, col]: Cell): boolean {
+		const [height, width] = this.dimentions
+		return (
+			1 <= row && row <= height &&
+			1 <= col && col <= width
+		)
+	}
+
+	valueAt(cell: Cell): Fraction | undefined {
+		if(!this.definedAt(cell)) return undefined
+		const [row, col] = cell
+		return this.history[0].matrixData[row-1][col-1]
+	}
 
 	toHistoryString(showMemo: boolean = true) {
 		return this.history
@@ -74,7 +89,7 @@ export default class Matrix {
 		return new Matrix([newHistoryItem, ...this.history], this.dimentions);
 	}
 
-	addScaledRowToRow(r1: number, r2: number, scale: number = 1) {
+	addRows(r1: number, r2: number, scale: number = 1) {
 		if(1 > r1 || r1 > this.dimentions[0]) throw new Error(`Row ${r1} is outside of the matrix`);
 		if(1 > r2 || r2 > this.dimentions[0]) throw new Error(`Row ${r2} is outside of the matrix`);
 
@@ -89,6 +104,16 @@ export default class Matrix {
 			matrixData: newMatrixData
 		}
 		return new Matrix([newHistoryItem, ...this.history], this.dimentions);
+	}
+
+	//TODO
+	isInRowEchelon(): boolean {
+		return false
+	}
+
+	//TODO
+	applyGaussianElimination(): Matrix {
+		return toRowEchelon(this)
 	}
 }
 
@@ -107,3 +132,29 @@ function historyItemToString({ matrixData, memo }: HistoryItem, showMemo: boolea
 		.join('\n')
 	return str
 }
+
+const findPivot = (m: Matrix, skip: number): Cell | undefined => {
+	const [height, width] = m.dimentions
+	for(let col = 1; col < width; col++) {
+		for(let row = skip + 1; row < height; row++) {
+			const c: Cell = [row, col]
+			if(m.valueAt(c)) return c
+		}
+	}
+	return undefined
+}
+
+//TODO
+function toRowEchelon(m: Matrix, skip: number = 0): Matrix {
+	if(m.isInRowEchelon()) return m
+	let pivot = findPivot(m, skip)
+	console.log(pivot)
+	return m
+}
+
+//TODO
+/*
+function reduceRowEchelon(m: Matrix, skip: number = 0): Matrix {
+	return m
+}
+*/
