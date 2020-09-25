@@ -30,7 +30,7 @@ export default class Matrix {
 		this.dimentions = dimentions
 	}
 
-	toString() {
+	toString(): string {
 		return historyItemToString(this.history[0])
 	}
 
@@ -49,20 +49,24 @@ export default class Matrix {
 		)
 	}
 
+	row(i: number): Row {
+		return this.history[0].matrixData[i - 1]
+	}
+
 	valueAt(cell: Cell): Fraction | undefined {
 		if(!this.definedAt(cell)) return undefined
 		const [row, col] = cell
 		return this.history[0].matrixData[row-1][col-1]
 	}
 
-	toHistoryString(showMemo: boolean = true) {
+	toHistoryString(showMemo = true): string {
 		return this.history
 			.reverse()
 			.map(i => historyItemToString(i, showMemo))
 			.join('\n\n')
 	}
 
-	scaleRow(row: number, weight: number) {
+	scaleRow(row: number, weight: number): Matrix {
 		if(1 > row || row > this.dimentions[0]) throw new Error(`Row ${row} is outside of the matrix`);
 
 		const newMatrixData = this.history[0].matrixData.slice()
@@ -74,7 +78,7 @@ export default class Matrix {
 		return new Matrix([newHistoryItem, ...this.history], this.dimentions);
 	}
 
-	swapRows(r1: number, r2: number) {
+	swapRows(r1: number, r2: number): Matrix {
 		if(1 > r1 || r1 > this.dimentions[0]) throw new Error(`Row ${r1} is outside of the matrix`);
 		if(1 > r2 || r2 > this.dimentions[0]) throw new Error(`Row ${r2} is outside of the matrix`);
 
@@ -89,7 +93,7 @@ export default class Matrix {
 		return new Matrix([newHistoryItem, ...this.history], this.dimentions);
 	}
 
-	addRows(r1: number, r2: number, scale: number = 1) {
+	addRows(r1: number, r2: number, scale = 1): Matrix {
 		if(1 > r1 || r1 > this.dimentions[0]) throw new Error(`Row ${r1} is outside of the matrix`);
 		if(1 > r2 || r2 > this.dimentions[0]) throw new Error(`Row ${r2} is outside of the matrix`);
 
