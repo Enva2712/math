@@ -1,11 +1,11 @@
 {
-  "private": true,
   "name": "linear-algebra",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/matrix.js",
   "scripts": {
     "test": "tap",
+    "build": "tsc",
     "format": "prettier --write ."
   },
   "keywords": [],
