@@ -1,11 +1,30 @@
 # Matrix math
 
-So far this directory just contains a Matrix class. I'm currently implementing the Gauss algorithm for solving a linear system.
+```ts
+import Matrix from "./matrix";
 
-The run.ts file is standing in for a testing suite.
+// Construct matrices from arrays
+const myMatrix = Matrix.fromArray([
+    [1, 2],
+    [3, 4],
+]);
 
-## TODO
+// strings
+const myOtherMatrix = Matrix.fromString(`4, 3\n2, 1`);
 
--   Gauss
--   Tests
--   Haskell implementation?
+// or tagged templates
+const identityMatrix = Matrix.tag`
+    1, 0
+    0, 1
+`;
+
+// add, subtract, and multiply by scalar values
+myMatrix.mul(2).add(8).sub(9); // => Matrix { ... }
+
+// or other matricies
+myMatrix
+    .add(myOtherMatrix)
+    .mul(identityMatrix)
+    // And check for equality
+    .equals(myMatrix); // => false
+```
