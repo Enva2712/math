@@ -132,7 +132,7 @@ export default class Matrix {
         if (typeof m2 === "number") m2 = new Fraction(m2);
         if (m2 instanceof Fraction)
             return new Matrix(
-                m1.cells.map((c) => c.add(m2 as Fraction)),
+                m1.cells.map((c) => c.sub(m2 as Fraction)),
                 m1.width
             );
         if (m1.width !== m2.width || m1.cells.length !== m2.cells.length)
