@@ -5,6 +5,7 @@ So far this directory just contains a Matrix class. I'm currently implementing t
 The run.ts file is standing in for a testing suite.
 
 ## TODO
-* Gauss
-* Tests
-* Haskell implementation?
+
+-   Gauss
+-   Tests
+-   Haskell implementation?
