@@ -144,8 +144,27 @@ export default class Matrix {
     }
 
     static mul(m1: Matrix, m2: number | Fraction | Matrix): Matrix {
-        // TODO
-        return m1.add(m2);
+        if (typeof m2 === "number") m2 = new Fraction(m2);
+        if (m2 instanceof Fraction) {
+            return new Matrix(
+                m1.cells.map((c) => c.mul(m2 as Fraction)),
+                m1.width
+            );
+        } else {
+            const newCells: Fraction[] = [];
+            for (const row of m1.rows()) {
+                for (const col of m2.columns()) {
+                    newCells.push(
+                        row.reduce(
+                            (acc, rowItem, colIndex) =>
+                                acc.add(rowItem.mul(col[colIndex])),
+                            new Fraction(0)
+                        )
+                    );
+                }
+            }
+            return new Matrix(newCells, m2.width);
+        }
     }
 
     static det(m: Matrix): Fraction {
