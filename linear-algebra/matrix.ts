@@ -178,14 +178,14 @@ export default class Matrix {
         else if (m.width === 2) {
             return m.cells[0].mul(m.cells[3]).sub(m.cells[1].mul(m.cells[2]));
         } else {
-            const firstRow = m.row(1);
-            return firstRow
-                .map((c, i) => {
+            return m
+                .row(1)
+                .map((cell, i) => {
                     const sign = ((i + 1) % 2) * 2 - 1;
                     const subMatrix = m.withoutRow(1).withoutCol(i + 1);
-                    return subMatrix.det().mul(c).mul(sign);
+                    return cell.mul(sign).mul(subMatrix.det());
                 })
-                .reduce((acc, val) => acc.add(val), new Fraction(1));
+                .reduce((acc, val) => acc.add(val), new Fraction(0));
         }
     }
 
