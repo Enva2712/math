@@ -107,9 +107,11 @@ export default class Matrix {
     }
 
     static equals(m1: Matrix, m2: Matrix): boolean {
-        // TODO
-        [m1, m2];
-        return false;
+        if (m1.width !== m2.width) return false;
+        for (let i = 0; i < m1.width; i++) {
+            if (!m1.cells[i].equals(m2.cells[i])) return false;
+        }
+        return true;
     }
 
     static add(m1: Matrix, m2: number | Fraction | Matrix): Matrix {
