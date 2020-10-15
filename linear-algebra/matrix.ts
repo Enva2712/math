@@ -63,9 +63,12 @@ export default class Matrix {
     }
 
     withoutRow(row: number): Matrix {
-        const newMatrix = this.clone();
-        newMatrix.cells.splice(newMatrix.getIndex(row, 1), newMatrix.width);
-        return newMatrix;
+        const rowStart = this.getIndex(row, 1);
+        const newCells = [
+            ...this.cells.slice(0, rowStart),
+            ...this.cells.slice(rowStart + this.width),
+        ];
+        return new Matrix(newCells, this.width);
     }
 
     withoutCol(col: number): Matrix {
@@ -73,7 +76,7 @@ export default class Matrix {
         const newCells = this.cells
             .map((c) => c.clone())
             // Filter out all entries from the provided column
-            .filter((_, i) => (i % this.width) - col + 1 === 0);
+            .filter((_, i) => 0 !== (i % this.width) - col + 1);
         return new Matrix(newCells, this.width - 1);
     }
 
