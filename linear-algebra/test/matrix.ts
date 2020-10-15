@@ -62,6 +62,5 @@ test("can detect square matricies", async ({ assert, assertNot }) => {
 
 test("can calculate determinants", async ({ assert }) => {
     assert(m1.det().equals(7), "Matrix 1 computes proper determinant");
-    console.log(m3.det().equals(-251));
-    assert(m3.det().equals(-251), "Matrix 2 computes proper determinant");
+    assert(m3.det().equals(-215), "Matrix 3 computes proper determinant");
 });
