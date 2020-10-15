@@ -149,7 +149,7 @@ export default class Matrix {
         if (m.width < 1) return new Fraction(1);
         else if (m.width === 1) return m.cells[0];
         else if (m.width === 2) {
-            return m.cells[0].mul(m.cells[3]).add(m.cells[1].mul(m.cells[2]));
+            return m.cells[0].mul(m.cells[3]).sub(m.cells[1].mul(m.cells[2]));
         } else {
             const firstRow = m.row(1);
             return firstRow
