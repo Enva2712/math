@@ -106,6 +106,12 @@ export default class Matrix {
         }
     }
 
+    static equals(m1: Matrix, m2: Matrix): boolean {
+        // TODO
+        [m1, m2];
+        return false;
+    }
+
     static add(m1: Matrix, m2: number | Fraction | Matrix): Matrix {
         if (typeof m2 === "number") m2 = new Fraction(m2);
         if (m2 instanceof Fraction) {
@@ -162,6 +168,9 @@ export default class Matrix {
         }
     }
 
+    equals(m: Matrix): boolean {
+        return Matrix.equals(this, m);
+    }
     add(m: number | Fraction | Matrix): Matrix {
         return Matrix.add(this, m);
     }
