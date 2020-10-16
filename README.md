@@ -5,7 +5,7 @@ This is a monorepo for math related code that I write.
 ## Matrix math
 
 ```ts
-import Matrix from "enva2712-math";
+import { Matrix } from "enva2712-math";
 
 // Construct matrices from arrays
 const myMatrix = Matrix.fromArray([

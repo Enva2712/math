@@ -1,1 +1,1 @@
-export { default as Matrix } from "./matrix";
+export * as Matrix from "./matrix";
