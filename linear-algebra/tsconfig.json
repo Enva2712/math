@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
     "lib": ["esnext"],
-    "target": "esnext",
+    "target": "es5",
+    "module": "esnext",
     // "incremental": true,
     // "declaration": true,
     // "sourceMap": true,
@@ -22,6 +23,7 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
 
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "removeComments": true
   }
 }

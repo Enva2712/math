@@ -1,11 +1,9 @@
-import commonjs from '@rollup/plugin-commonjs';
 import typescript from '@rollup/plugin-typescript';
 
 export default {
     input: 'src/index.ts',
     plugins: [
-        typescript({ module: 'commonjs' }),
-        commonjs({ extensions: ['.js', '.ts'] }),
+        typescript(),
     ],
     external: ['fraction.js', 'tslib'],
     output: [
