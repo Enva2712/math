@@ -2,7 +2,7 @@
   "compilerOptions": {
     "lib": ["esnext"],
     "target": "es5",
-    "module": "esnext",
+    "moduleResolution": "node",
     "importHelpers": true,
     "downlevelIteration": true,
     // "incremental": true,
