@@ -1,4 +1,4 @@
-import { test } from "tap";
+import test from "ava";
 import Matrix from "../src/matrix";
 
 const m1 = Matrix.fromArray([
@@ -54,9 +54,9 @@ test("can multiply matricies", async ({ assert }) => {
     );
 });
 
-test("can detect square matricies", async ({ assert, assertNot }) => {
+test("can detect square matricies", async ({ assert }) => {
     assert(m1.isSquare(), "Matrix 1 is detected as square");
-    assertNot(m2.isSquare(), "Matrix 2 is detected as non-square");
+    assert(!m2.isSquare(), "Matrix 2 is detected as non-square");
     assert(m3.isSquare(), "Matrix 3 is detected as square");
 });
 
