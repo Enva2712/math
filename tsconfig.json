@@ -3,11 +3,9 @@
     "lib": ["esnext"],
     "target": "es5",
     "module": "esnext",
-    // "incremental": true,
-    // "declaration": true,
-    // "sourceMap": true,
     "importHelpers": true,
     "downlevelIteration": true,
+    // "incremental": true,
     // "tsBuildInfoFile": "./tsbuildinfo.json",
 
     "strict": true,

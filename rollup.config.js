@@ -1,5 +1,6 @@
 import typescript from "@rollup/plugin-typescript";
 import { terser } from "rollup-plugin-terser";
+import pkg from './package.json';
 
 export default {
     input: "src/index.ts",
@@ -7,14 +8,13 @@ export default {
     external: ["fraction.js", "tslib"],
     output: [
         {
-            file: "dist/index.js",
-            format: "umd",
-            name: "envaMath",
+            file: pkg.main,
+            format: "cjs",
             exports: "named",
             sourcemap: true,
         },
         {
-            file: "dist/index.es.js",
+            file: pkg.module,
             format: "esm",
             exports: "named",
             sourcemap: true,
