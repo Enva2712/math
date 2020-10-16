@@ -41,7 +41,7 @@ test("can add and subtract scalar value to matricies", async ({ assert }) => {
         "matrix 1 plus 5 is properly computed"
     );
     assert(
-        m2.sub(2).equals(Matrix.tag`-1, -4, -42`),
+        m2.sub(2).equals(Matrix.tag`-1, -4, 38`),
         "matrix 2 - 2 is properly computed"
     );
 });
