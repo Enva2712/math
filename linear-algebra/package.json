@@ -1,15 +1,15 @@
 {
-  "name": "linear-algebra",
+  "name": "matrix-math",
   "version": "1.0.0",
   "description": "",
   "main": "dist/matrix.js",
   "scripts": {
-    "preversion": "npm run format && npm test",
+    "preversion": "npm test",
     "postversion": "npm publish",
     "pretest": "npm run clean",
     "test": "tap",
     "clean": "rm -rf dist tsbuildinfo.json",
-    "prepare": "npm run build",
+    "prepare": "npm run format && npm run build",
     "build": "tsc",
     "format": "prettier --write ."
   },
