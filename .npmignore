@@ -1,5 +1,9 @@
-node_modules/
+rollup.config.js
 src/
 test/
-tsbuildinfo.json
 tsconfig.json
+
+.editorconfig
+.eslintrc.yml
+.prettierignore
+.prettierrc.json5
