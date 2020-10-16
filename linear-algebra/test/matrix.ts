@@ -1,5 +1,5 @@
 import { test } from "tap";
-import Matrix from "../matrix";
+import Matrix from "../src/matrix";
 
 const m1 = Matrix.fromArray([
     [-5, -4],
