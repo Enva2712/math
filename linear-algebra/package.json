@@ -4,7 +4,12 @@
   "description": "",
   "main": "dist/matrix.js",
   "scripts": {
+    "preversion": "npm run format && npm test",
+    "postversion": "npm publish",
+    "pretest": "npm run clean",
     "test": "tap",
+    "clean": "rm -rf dist tsbuildinfo.json",
+    "prepare": "npm run build",
     "build": "tsc",
     "format": "prettier --write ."
   },
