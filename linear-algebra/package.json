@@ -12,8 +12,12 @@
     "format": "prettier --write ."
   },
   "ava": {
-    "extensions": ["ts"],
-    "require": ["ts-node/register"]
+    "extensions": [
+      "ts"
+    ],
+    "require": [
+      "ts-node/register"
+    ]
   },
   "keywords": [],
   "author": "Evan Rusmisel <evanrusmisel@gmail.com>",
@@ -24,7 +28,6 @@
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^15.1.0",
-    "@rollup/plugin-node-resolve": "^9.0.0",
     "@rollup/plugin-typescript": "^6.0.0",
     "@typescript-eslint/eslint-plugin": "^4.1.1",
     "@typescript-eslint/parser": "^4.1.1",
