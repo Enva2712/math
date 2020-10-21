@@ -114,6 +114,10 @@ export default class Matrix {
         return true;
     }
 
+    static minor(m: Matrix, row: number, col: number): Matrix {
+        return m.withoutRow(row).withoutCol(col);
+    }
+
     static add(m1: Matrix, m2: number | Fraction | Matrix): Matrix {
         if (typeof m2 === "number") m2 = new Fraction(m2);
         if (m2 instanceof Fraction) {
@@ -182,15 +186,24 @@ export default class Matrix {
                 .row(1)
                 .map((cell, i) => {
                     const sign = ((i + 1) % 2) * 2 - 1;
-                    const subMatrix = m.withoutRow(1).withoutCol(i + 1);
-                    return cell.mul(sign).mul(subMatrix.det());
+                    return cell.mul(sign).mul(m.minor(1, i+1).det());
                 })
                 .reduce((acc, val) => acc.add(val), new Fraction(0));
         }
     }
 
+    /*
+    static cofactorMatrix(m: Matrix): Matrix {
+        // TODO
+        return m;
+    }
+    */
+
     equals(m: Matrix): boolean {
         return Matrix.equals(this, m);
+    }
+    minor(row: number, col: number): Matrix {
+        return Matrix.minor(this, row, col);
     }
     add(m: number | Fraction | Matrix): Matrix {
         return Matrix.add(this, m);
@@ -204,4 +217,9 @@ export default class Matrix {
     det(): Fraction {
         return Matrix.det(this);
     }
+    /*
+    cofactorMatrix(): Matrix {
+        return Matrix.cofactorMatrix(this);
+    }
+    */
 }
