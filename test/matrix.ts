@@ -94,23 +94,29 @@ test("can find cofactor matrices", async ({ assert, throws }) => {
 });
 
 test("can transpose matrices", async ({ assert }) => {
-    assert(identity2x2.transpose().equals(identity2x2))
-    assert(m2.transpose().equals(Matrix.tag`
+    assert(identity2x2.transpose().equals(identity2x2));
+    assert(
+        m2.transpose().equals(Matrix.tag`
         1
         -2
         40
-    `))
-})
+    `)
+    );
+});
 
 test("can invert matrices", async ({ assert }) => {
-    assert(identity2x2.invert().equals(identity2x2))
-    assert(m1.invert().equals(Matrix.tag`
+    assert(identity2x2.invert().equals(identity2x2));
+    assert(
+        m1.invert().equals(Matrix.tag`
         -3/7,  4/7
          2/7, -5/7
-    `));
-    assert(m3.mul(m3.invert()).equals(Matrix.tag`
+    `)
+    );
+    assert(
+        m3.mul(m3.invert()).equals(Matrix.tag`
         1, 0, 0
         0, 1, 0
         0, 0, 1
-    `))
-})
+    `)
+    );
+});

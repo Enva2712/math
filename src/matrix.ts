@@ -213,11 +213,11 @@ export default class Matrix {
     }
 
     static invert(m: Matrix): Matrix {
-        if(!m.isSquare()) throw new Error("A matrix must be square to be inverted");
+        if (!m.isSquare())
+            throw new Error("A matrix must be square to be inverted");
         const adjugate = m.cofactor().transpose();
         return adjugate.mul(m.det().pow(-1));
     }
-
 
     equals(m: Matrix): boolean {
         return Matrix.equals(this, m);
