@@ -61,24 +61,34 @@ test("can detect square matricies", async ({ assert }) => {
 });
 
 test("can find minor of matrices", async ({ assert, throws }) => {
-    assert(m1.minor(1, 1).equals(Matrix.fromString('-3')));
-    assert(m3.minor(1, 2).equals(Matrix.tag`
+    assert(m1.minor(1, 1).equals(Matrix.fromString("-3")));
+    assert(
+        m3.minor(1, 2).equals(Matrix.tag`
         4,  1
         1, -5
-    `));
+    `)
+    );
     throws(() => m1.minor(0, 0));
-})
+});
 
 test("can calculate determinants", async ({ assert }) => {
     assert(m1.det().equals(7), "Matrix 1 computes proper determinant");
     assert(m3.det().equals(-215), "Matrix 3 computes proper determinant");
 });
 
-/*
-test("can find cofactor matrices", async ({ assert }) => {
-    assert(m1.cofactorMatrix().equals(Matrix.tag`
+test("can find cofactor matrices", async ({ assert, throws }) => {
+    assert(
+        m1.cofactor().equals(Matrix.tag`
         -3,  2
          4, -5
-    `));
-})
-*/
+    `)
+    );
+    throws(() => m2.cofactor());
+    assert(
+        m3.cofactor().equals(Matrix.tag`
+        -11,  21,  2
+        -36, -29, -13
+        -16,  11,  42
+    `)
+    );
+});
