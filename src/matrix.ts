@@ -207,6 +207,18 @@ export default class Matrix {
         return new Matrix(newCells, m.width);
     }
 
+    static transpose(m: Matrix): Matrix {
+        const newCells = [...m.columns()].flat();
+        return new Matrix(newCells, m.cells.length / m.width);
+    }
+
+    static invert(m: Matrix): Matrix {
+        if(!m.isSquare()) throw new Error("A matrix must be square to be inverted");
+        const adjugate = m.cofactor().transpose();
+        return adjugate.mul(m.det().pow(-1));
+    }
+
+
     equals(m: Matrix): boolean {
         return Matrix.equals(this, m);
     }
@@ -227,5 +239,11 @@ export default class Matrix {
     }
     cofactor(): Matrix {
         return Matrix.cofactor(this);
+    }
+    transpose(): Matrix {
+        return Matrix.transpose(this);
+    }
+    invert(): Matrix {
+        return Matrix.invert(this);
     }
 }
