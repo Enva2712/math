@@ -37,6 +37,22 @@ export default class Matrix {
             .join("\n");
     }
 
+    toPrettyString(): string {
+        const rows = [...this.rows()].map((r) => r.map((c) => c.toString()));
+        const colWidths = [...this.columns()].map((col) =>
+            col.reduce((max, cur) => Math.max(max, cur.toString().length), 0)
+        );
+        const lines = rows.map((r) =>
+            r.map((cell, i) => cell.padStart(colWidths[i])).join(", ")
+        );
+
+        return [
+            `┌${" ".repeat(lines[0].length + 2)}┐`,
+            ...lines.map((l) => `│ ${l} │`),
+            `└${" ".repeat(lines[0].length + 2)}┘`,
+        ].join("\n");
+    }
+
     constructor(cells: Fraction[], width: number) {
         this.cells = cells;
         this.width = width;
