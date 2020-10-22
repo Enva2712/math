@@ -58,6 +58,12 @@ export default class Matrix {
         return (row - 1) * this.width + (column - 1);
     }
 
+    getPos(index: number): [number, number] {
+        if (index < 0 || index > this.cells.length)
+            throw new Error("Position out of range");
+        return [Math.floor(index / this.width) + 1, (index % this.width) + 1];
+    }
+
     isSquare(): boolean {
         return this.cells.length === this.width ** 2;
     }
@@ -186,18 +192,20 @@ export default class Matrix {
                 .row(1)
                 .map((cell, i) => {
                     const sign = ((i + 1) % 2) * 2 - 1;
-                    return cell.mul(sign).mul(m.minor(1, i+1).det());
+                    return cell.mul(sign).mul(m.minor(1, i + 1).det());
                 })
                 .reduce((acc, val) => acc.add(val), new Fraction(0));
         }
     }
 
-    /*
-    static cofactorMatrix(m: Matrix): Matrix {
-        // TODO
-        return m;
+    static cofactor(m: Matrix): Matrix {
+        const newCells = m.cells.map((_, i) => {
+            const [row, col] = m.getPos(i);
+            const sign = (((row % 2) + col + 1) % 2) * 2 - 1;
+            return m.minor(row, col).det().mul(sign);
+        });
+        return new Matrix(newCells, m.width);
     }
-    */
 
     equals(m: Matrix): boolean {
         return Matrix.equals(this, m);
@@ -217,9 +225,7 @@ export default class Matrix {
     det(): Fraction {
         return Matrix.det(this);
     }
-    /*
-    cofactorMatrix(): Matrix {
-        return Matrix.cofactorMatrix(this);
+    cofactor(): Matrix {
+        return Matrix.cofactor(this);
     }
-    */
 }
