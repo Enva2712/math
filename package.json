@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "scripts": {
-    "preversion": "npm test",
+    "preversion": "npm build && npm test",
     "postversion": "npm publish",
     "test": "ava",
     "build": "rollup -c rollup.config.js",
